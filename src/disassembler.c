@@ -203,7 +203,8 @@ int main(int argc, char *argv[])
 
 	if((rom_file = fopen(argv[1], "rb")) == NULL)
 	{
-
+		printf("[ERROR] - Couldn't open file!\n");
+		exit(EXIT_FAILURE);
 	}
 
 	fseek(rom_file, 0L, SEEK_END);
