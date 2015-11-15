@@ -18,177 +18,177 @@ void print_opcode(unsigned char *buffer, unsigned int pcounter)
 			switch(opcode & 0x00FF)
 			{
 				case 0x00E0:
-					printf("%04X - %02X%02X - CLS\n", 
+					printf("0x%04X - 0x%02X%02X - CLS\n",
 							pcounter, p_code[0], p_code[1]);
 					break;
 				case 0x00EE:
-					printf("%04X - %02X%02X - RET\n", 
+					printf("0x%04X - 0x%02X%02X - RET\n",
 							pcounter, p_code[0], p_code[1]);
 					break;
 				default:
-					printf("%04X - %02X%02X - Unknown\n", pcounter, p_code[0], p_code[1]);
+					printf("0x%04X - 0x%02X%02X - Unknown\n", pcounter, p_code[0], p_code[1]);
 			}
 			break;
 		case 0x1000:
-			printf("%04X - %02X%02X - JP %04X\n", 
+			printf("0x%04X - 0x%02X%02X - JP 0x%04X\n",
 					pcounter, p_code[0], p_code[1], _NNN);
 			break;
 		case 0x2000:
-			printf("%04X - %02X%02X - CALL %04X\n", 
+			printf("0x%04X - 0x%02X%02X - CALL 0x%04X\n",
 					pcounter, p_code[0], p_code[1], _NNN);
 			break;
 		case 0x3000:
-			printf("%04X - %02X%02X - SE V%X, %02X\n", 
+			printf("0x%04X - 0x%02X%02X - SE V%X, 0x%02X\n",
 					pcounter, p_code[0], p_code[1], _X, _NN);
 			break;
 		case 0x4000:
-			printf("%04X - %02X%02X - SNE V%X, %02X\n", 
+			printf("0x%04X - 0x%02X%02X - SNE V%X, 0x%02X\n",
 					pcounter, p_code[0], p_code[1], _X, _NN);
 			break;
 		case 0x5000:
-			printf("%04X - %02X%02X - SE V%X, V%X\n", 
+			printf("0x%04X - 0x%02X%02X - SE V%X, V%X\n",
 					pcounter, p_code[0], p_code[1], _X, _Y);
 			break;
 		case 0x6000:
-			printf("%04X - %02X%02X - LD V%X, %02X\n", 
+			printf("0x%04X - 0x%02X%02X - LD V%X, 0x%02X\n",
 					pcounter, p_code[0], p_code[1], _X, _NN);
 			break;
 		case 0x7000:
-			printf("%04X - %02X%02X - ADD V%X, %02X\n", 
+			printf("0x%04X - 0x%02X%02X - ADD V%X, 0x%02X\n",
 					pcounter, p_code[0], p_code[1], _X, _NN);
 			break;
 		case 0x8000:
-			printf("%04X - %02X%02X - RET\n", pcounter, p_code[0], p_code[1]);
+			printf("0x%04X - 0x%02X%02X - RET\n", pcounter, p_code[0], p_code[1]);
 			switch(opcode & 0x000F)
 			{
 				case 0x0:
-					printf("%04X - %02X%02X - LD V%X, V%X\n", 
+					printf("0x%04X - 0x%02X%02X - LD V%X, V%X\n",
 							pcounter, p_code[0], p_code[1], _X, _Y);
 					break;
 				case 0x1:
-					printf("%04X - %02X%02X - OR V%X, V%X\n", 
+					printf("0x%04X - 0x%02X%02X - OR V%X, V%X\n",
 							pcounter, p_code[0], p_code[1], _X, _Y);
 					break;
 				case 0x2:
-					printf("%04X - %02X%02X - AND V%X, V%X\n", 
+					printf("0x%04X - 0x%02X%02X - AND V%X, V%X\n",
 							pcounter, p_code[0], p_code[1], _X, _Y);
 					break;
 				case 0x3:
-					printf("%04X - %02X%02X - XOR V%X, V%X\n", 
+					printf("0x%04X - 0x%02X%02X - XOR V%X, V%X\n",
 							pcounter, p_code[0], p_code[1], _X, _Y);
 					break;
 				case 0x4:
-					printf("%04X - %02X%02X - ADD V%X, V%X\n", 
+					printf("0x%04X - 0x%02X%02X - ADD V%X, V%X\n",
 							pcounter, p_code[0], p_code[1], _X, _Y);
 					break;
 				case 0x5:
-					printf("%04X - %02X%02X - SUB V%X, V%X\n", 
+					printf("0x%04X - 0x%02X%02X - SUB V%X, V%X\n",
 							pcounter, p_code[0], p_code[1], _X, _Y);
 					break;
 				case 0x6:
-					printf("%04X - %02X%02X - SHR V%X, V%X\n", 
+					printf("0x%04X - 0x%02X%02X - SHR V%X, V%X\n",
 							pcounter, p_code[0], p_code[1], _X, _Y);
 					break;
 				case 0x7:
-					printf("%04X - %02X%02X - SUBN V%X, V%X\n", 
+					printf("0x%04X - 0x%02X%02X - SUBN V%X, V%X\n",
 							pcounter, p_code[0], p_code[1], _X, _Y);
 					break;
 				case 0xE:
-					printf("%04X - %02X%02X - SHL V%X, V%X\n", 
+					printf("0x%04X - 0x%02X%02X - SHL V%X, V%X\n",
 							pcounter, p_code[0], p_code[1], _X, _Y);
 					break;
 				default:
-					printf("%04X - %02X%02X - Unknown\n", pcounter, p_code[0], p_code[1]);
+					printf("0x%04X - 0x%02X%02X - Unknown\n", pcounter, p_code[0], p_code[1]);
 			}
 			break;
 		case 0x9000:
 			switch(opcode & 0x000F)
 			{
 				case 0x0:
-					printf("%04X - %02X%02X - SNE V%X, V%X\n", 
+					printf("0x%04X - 0x%02X%02X - SNE V%X, V%X\n",
 							pcounter, p_code[0], p_code[1], _X, _Y);
 					break;
 				default:
-					printf("%04X - %02X%02X - Unknown\n", pcounter, p_code[0], p_code[1]);
+					printf("0x%04X - 0x%02X%02X - Unknown\n", pcounter, p_code[0], p_code[1]);
 			}
 			break;
 		case 0xA000:
-					printf("%04X - %02X%02X - LD I, %04X\n", 
+					printf("0x%04X - 0x%02X%02X - LD I, 0x%04X\n",
 							pcounter, p_code[0], p_code[1], _NNN);
 			break;
 		case 0xB000:
-					printf("%04X - %02X%02X - JP V0, %04X\n", 
+					printf("0x%04X - 0x%02X%02X - JP V0, 0x%04X\n",
 							pcounter, p_code[0], p_code[1], _NNN);
 			break;
 		case 0xC000:
-					printf("%04X - %02X%02X - RND V%X, %02X\n", 
+					printf("0x%04X - 0x%02X%02X - RND V%X, 0x%02X\n",
 							pcounter, p_code[0], p_code[1], _X, _NN);
 			break;
 		case 0xD000:
-					printf("%04X - %02X%02X - DRW V%X, V%X, %02X\n", 
+					printf("0x%04X - 0x%02X%02X - DRW V%X, V%X, 0x%02X\n",
 							pcounter, p_code[0], p_code[1], _X, _Y, _N);
 			break;
 		case 0xE000:
-					printf("%04X - %02X%02X - RET\n", pcounter, p_code[0], p_code[1]);
+					printf("0x%04X - 0x%02X%02X - RET\n", pcounter, p_code[0], p_code[1]);
 			switch(opcode & 0x00FF)
 			{
 				case 0x9E:
-					printf("%04X - %02X%02X - SKP V%X\n", 
+					printf("0x%04X - 0x%02X%02X - SKP V%X\n",
 							pcounter, p_code[0], p_code[1], _X);
 					break;
 				case 0xA1:
-					printf("%04X - %02X%02X - SKNP V%X\n", 
+					printf("0x%04X - 0x%02X%02X - SKNP V%X\n",
 							pcounter, p_code[0], p_code[1], _X);
 					break;
 				default:
-					printf("%04X - %02X%02X - Unknown\n", pcounter, p_code[0], p_code[1]);
+					printf("0x%04X - 0x%02X%02X - Unknown\n", pcounter, p_code[0], p_code[1]);
 			}
 			break;
 		case 0xF000:
 			switch(opcode & 0x00FF)
 			{
 				case 0x07:
-					printf("%04X - %02X%02X - LD V%X, DT\n", 
+					printf("0x%04X - 0x%02X%02X - LD V%X, DT\n",
 							pcounter, p_code[0], p_code[1], _X);
 					break;
 				case 0x0A:
-					printf("%04X - %02X%02X - LD V%X, K\n", 
+					printf("0x%04X - 0x%02X%02X - LD V%X, K\n",
 							pcounter, p_code[0], p_code[1], _X);
 					break;
 				case 0x15:
-					printf("%04X - %02X%02X - LD DT, V%X\n", 
+					printf("0x%04X - 0x%02X%02X - LD DT, V%X\n",
 							pcounter, p_code[0], p_code[1], _X);
 					break;
 				case 0x18:
-					printf("%04X - %02X%02X - LD ST, V%X\n", 
+					printf("0x%04X - 0x%02X%02X - LD ST, V%X\n",
 							pcounter, p_code[0], p_code[1], _X);
 					break;
 				case 0x1E:
-					printf("%04X - %02X%02X - ADD I, V%X\n", 
+					printf("0x%04X - 0x%02X%02X - ADD I, V%X\n",
 							pcounter, p_code[0], p_code[1], _X);
 					break;
 				case 0x29:
-					printf("%04X - %02X%02X - LD F, V%X\n", 
+					printf("0x%04X - 0x%02X%02X - LD F, V%X\n",
 							pcounter, p_code[0], p_code[1], _X);
 					break;
 				case 0x33:
-					printf("%04X - %02X%02X - LD B, V%X\n", 
+					printf("0x%04X - 0x%02X%02X - LD B, V%X\n",
 							pcounter, p_code[0], p_code[1], _X);
 					break;
 				case 0x55:
-					printf("%04X - %02X%02X - LD [I], V%X\n", 
+					printf("0x%04X - 0x%02X%02X - LD [I], V%X\n",
 							pcounter, p_code[0], p_code[1], _X);
 					break;
 				case 0x65:
-					printf("%04X - %02X%02X - LD V%X, [I]\n", 
+					printf("0x%04X - 0x%02X%02X - LD V%X, [I]\n",
 							pcounter, p_code[0], p_code[1], _X);
 					break;
 				default:
-					printf("%04X - %02X%02X - Unknown\n", pcounter, p_code[0], p_code[1]);
+					printf("0x%04X - 0x%02X%02X - Unknown\n", pcounter, p_code[0], p_code[1]);
 			}
 			break;
 		default:
-			printf("%04X - %02X%02X - Unknown\n", pcounter, p_code[0], p_code[1]);
+			printf("0x%04X - 0x%02X%02X - Unknown\n", pcounter, p_code[0], p_code[1]);
 	}
 }
 
