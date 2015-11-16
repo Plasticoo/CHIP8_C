@@ -1,3 +1,5 @@
 chip8dis
 chip8emu
 tags
+
+build/*
