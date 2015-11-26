@@ -16,7 +16,7 @@
 typedef struct
 {
 	//memory
-	unsigned char memory[MEM_SIZE];	
+	unsigned char memory[MEM_SIZE];
 	//graphic memory
 	unsigned char graphics[GFX_SIZE];
 
@@ -42,11 +42,11 @@ typedef struct
 	// timers
 	unsigned char delay_timer;
 	unsigned char sound_timer;
-	
-	// flags
-	unsigned short draw_flag;
 
-	unsigned short int debug_flag;
+	// flags
+	unsigned short draw_flag : 1;
+
+	unsigned short int debug_flag : 1;
 
 } chip8_t;
 
