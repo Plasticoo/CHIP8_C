@@ -28,7 +28,7 @@ int rom_load(chip8_t *chip8, char *rom_name)
 		print_exit_error(OPEN_ERROR, NULL);
 	}
   
-	if(rom_size(rom_file) > 3584)
+	if(rom_size(rom_file) > 3584 || rom_size(rom_file) < 0)
 	{
 		print_exit_error(SIZE_ERROR, NULL);	
 	}
