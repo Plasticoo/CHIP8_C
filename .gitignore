@@ -3,3 +3,4 @@ chip8emu
 tags
 
 build/*
+assembler/

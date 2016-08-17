@@ -6,7 +6,7 @@
 
 #include "cpu.h"
 
-const unsigned int _sdl_keymap[16] = 
+const unsigned int _sdl_keymap[16] =
 {
 	SDLK_1,
 	SDLK_2,
@@ -94,7 +94,7 @@ void _8XY4(chip8_t *chip8)
 	chip8->V[_X] += chip8->V[_Y];
 
 	chip8->pc += 2;
-	
+
 	if(chip8->debug_flag == 1)
 	{
 		printf("[DEBG] - ADD V%X, V%X\n", _X, _Y);
@@ -109,7 +109,7 @@ void _8XY5(chip8_t *chip8)
 
 	if(chip8->V[_X] > chip8->V[_Y])
 	{
-		chip8->V[0xF] = 1;	
+		chip8->V[0xF] = 1;
 	}
 	else
 	{
@@ -119,7 +119,7 @@ void _8XY5(chip8_t *chip8)
 	chip8->V[_X] -= chip8->V[_Y];
 
 	chip8->pc += 2;
-	
+
 	if(chip8->debug_flag == 1)
 	{
 		printf("[DEBG] - SUB V%X, V%X\n", _X, _Y);
@@ -134,7 +134,7 @@ void _8XY7(chip8_t *chip8)
 
 	if(chip8->V[_X] > chip8->V[_Y])
 	{
-		chip8->V[0xF] = 1;	
+		chip8->V[0xF] = 1;
 	}
 	else
 	{
@@ -157,10 +157,10 @@ void _8XY2(chip8_t *chip8)
 	unsigned short int _X = (chip8->opcode & 0x0F00) >> 8;
 	unsigned short int _Y = (chip8->opcode & 0x00F0) >> 4;
 
-	chip8->V[_X] &= chip8->V[_Y];	
+	chip8->V[_X] &= chip8->V[_Y];
 
 	chip8->pc += 2;
-	
+
 	if(chip8->debug_flag == 1)
 	{
 		printf("[DEBG] - AND V%X, V%X\n", _X, _Y);
@@ -176,7 +176,7 @@ void _8XY1(chip8_t *chip8)
 	chip8->V[_X] |= chip8->V[_Y];
 
 	chip8->pc += 2;
-	
+
 	if(chip8->debug_flag == 1)
 	{
 		printf("[DEBG] - OR V%X, V%X\n", _X, _Y);
@@ -448,7 +448,7 @@ void _FX18(chip8_t *chip8)
 	chip8->sound_timer = chip8->V[_X];
 
 	chip8->pc += 2;
-	
+
 	if(chip8->debug_flag == 1)
 	{
 		printf("[DEBG] - LD ST, V%X\n", _X);
@@ -463,19 +463,19 @@ void _FX0A(chip8_t *chip8)
 
 	const uint8_t *sdl_keys= SDL_GetKeyState(NULL);
 
-	for(i = 0; i < FNT_SIZE; i++) 
+	for(i = 0; i < KEY_SIZE; i++)
 	{
-		if(sdl_keys[_sdl_keymap[i]]) 
+		if(sdl_keys[_sdl_keymap[i]])
 		{
 			chip8->V[_X] = i;
 			chip8->pc += 2;
-			
+
 			if(chip8->debug_flag == 1)
 			{
 				printf("[DEBG] - LD V%X, K\n", _X);
 			}
 		}
-	}			
+	}
 }
 
 // skip following instruction if key == VX pressed

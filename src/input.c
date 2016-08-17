@@ -4,9 +4,9 @@
 #include "graphics.h"
 #include "memory.h"
 
-SDLKey sdl_keys[16] = 
+SDLKey sdl_keys[16] =
 {
-	SDLK_1,	
+	SDLK_1,
 	SDLK_2,
 	SDLK_3,
 	SDLK_4,
