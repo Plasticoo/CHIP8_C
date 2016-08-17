@@ -13,6 +13,8 @@
 
 #define FPS_MAX 5
 
+uint8_t global_debug_flag = 0;
+
 int main(int argc, char *argv[])
 {
 	SDL_Surface *screen;
@@ -33,6 +35,8 @@ int main(int argc, char *argv[])
 
 	graphics_init(&screen, argv[1]);
 
+	_chip8.global_debug_flag = global_debug_flag;
+
 	// program loop
 	for(;;)
 	{
@@ -41,18 +45,18 @@ int main(int argc, char *argv[])
 		if(_chip8.draw_flag)
 		{
 			graphics_update(screen, &_chip8);
-			_chip8.draw_flag = 0;	
+			_chip8.draw_flag = 0;
 		}
 
 		if(input_new_event(&_chip8) == 1)
 		{
-			break;	
+			break;
 		}
 
 		fps_lock(next_frame, FPS_MAX);
 		next_frame = SDL_GetTicks() + FPS_MAX;
 	}
-	
+
 	graphics_quit();
 
 	return 0;

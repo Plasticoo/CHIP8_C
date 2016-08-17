@@ -47,6 +47,7 @@ typedef struct
 	unsigned short draw_flag : 1;
 
 	unsigned short int debug_flag : 1;
+	unsigned char global_debug_flag : 1;
 
 } chip8_t;
 

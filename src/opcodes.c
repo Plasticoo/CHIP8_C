@@ -38,7 +38,7 @@ void _6XNN(chip8_t *chip8)
 
 	chip8->pc += 2;
 
-	if(chip8->debug_flag == 1)
+	if(chip8->debug_flag || chip8->global_debug_flag)
 	{
 		printf("[DEBG] - LD V%X, %02X\n", _X, _NN);
 	}
@@ -54,7 +54,7 @@ void _8XY0(chip8_t *chip8)
 
 	chip8->pc += 2;
 
-	if(chip8->debug_flag == 1)
+	if(chip8->debug_flag || chip8->global_debug_flag)
 	{
 		printf("[DEBG] - LD V%X, V%X\n", _X, _Y);
 	}
@@ -70,7 +70,7 @@ void _7XNN(chip8_t *chip8)
 
 	chip8->pc += 2;
 
-	if(chip8->debug_flag == 1)
+	if(chip8->debug_flag || chip8->global_debug_flag)
 	{
 		printf("[DEBG] - ADD V%X, %02X\n", _X, _NN);
 	}
@@ -95,7 +95,7 @@ void _8XY4(chip8_t *chip8)
 
 	chip8->pc += 2;
 
-	if(chip8->debug_flag == 1)
+	if(chip8->debug_flag || chip8->global_debug_flag)
 	{
 		printf("[DEBG] - ADD V%X, V%X\n", _X, _Y);
 	}
@@ -120,7 +120,7 @@ void _8XY5(chip8_t *chip8)
 
 	chip8->pc += 2;
 
-	if(chip8->debug_flag == 1)
+	if(chip8->debug_flag || chip8->global_debug_flag)
 	{
 		printf("[DEBG] - SUB V%X, V%X\n", _X, _Y);
 	}
@@ -145,7 +145,7 @@ void _8XY7(chip8_t *chip8)
 
 	chip8->pc += 2;
 
-	if(chip8->debug_flag == 1)
+	if(chip8->debug_flag || chip8->global_debug_flag)
 	{
 		printf("[DEBG] - SUBN V%X, V%X\n", _X, _Y);
 	}
@@ -161,7 +161,7 @@ void _8XY2(chip8_t *chip8)
 
 	chip8->pc += 2;
 
-	if(chip8->debug_flag == 1)
+	if(chip8->debug_flag || chip8->global_debug_flag)
 	{
 		printf("[DEBG] - AND V%X, V%X\n", _X, _Y);
 	}
@@ -177,7 +177,7 @@ void _8XY1(chip8_t *chip8)
 
 	chip8->pc += 2;
 
-	if(chip8->debug_flag == 1)
+	if(chip8->debug_flag || chip8->global_debug_flag)
 	{
 		printf("[DEBG] - OR V%X, V%X\n", _X, _Y);
 	}
@@ -193,7 +193,7 @@ void _8XY3(chip8_t *chip8)
 
 	chip8->pc += 2;
 	
-	if(chip8->debug_flag == 1)
+	if(chip8->debug_flag || chip8->global_debug_flag)
 	{
 		printf("[DEBG] - XOR V%X, V%X\n", _X, _Y);
 	}
@@ -211,7 +211,7 @@ void _8XY6(chip8_t *chip8)
 
 	chip8->pc += 2;
 	
-	if(chip8->debug_flag == 1)
+	if(chip8->debug_flag || chip8->global_debug_flag)
 	{
 		printf("[DEBG] - SHR V%X, V%X\n", _X, _Y);
 	}
@@ -225,11 +225,11 @@ void _8XYE(chip8_t *chip8)
 
 	// most significant bit
 	chip8->V[0xF] = (chip8->V[_Y] >> 7);
-	chip8->V[_X] = chip8->V[_Y] << 1; 
+	chip8->V[_X] = chip8->V[_Y] << 1;
 
 	chip8->pc += 2;
-	
-	if(chip8->debug_flag == 1)
+
+	if(chip8->debug_flag || chip8->global_debug_flag)
 	{
 		printf("[DEBG] - SHL V%X, V%X\n", _X, _Y);
 	}
@@ -245,8 +245,8 @@ void _CXNN(chip8_t *chip8)
 	chip8->V[_X] = ((rand() % (0x0 - 0xFF)) + 0xFF) & _NN;
 
 	chip8->pc += 2;
-	
-	if(chip8->debug_flag == 1)
+
+	if(chip8->debug_flag || chip8->global_debug_flag)
 	{
 		printf("[DEBG] - RND V%X, %02X\n", _X, _NN);
 	}
@@ -258,8 +258,8 @@ void _1NNN(chip8_t *chip8)
 	unsigned short int _NNN = (chip8->opcode & 0x0FFF);
 
 	chip8->pc = _NNN;
-	
-	if(chip8->debug_flag == 1)
+
+	if(chip8->debug_flag || chip8->global_debug_flag)
 	{
 		printf("[DEBG] - JP %4X\n", _NNN);
 	}
@@ -271,8 +271,8 @@ void _BNNN(chip8_t *chip8)
 	unsigned short int _NNN = (chip8->opcode & 0x0FFF);
 
 	chip8->pc = _NNN + chip8->V[0x0];
-	
-	if(chip8->debug_flag == 1)
+
+	if(chip8->debug_flag || chip8->global_debug_flag)
 	{
 		printf("[DEBG] - JP V0, %4X\n", _NNN);
 	}
@@ -287,8 +287,8 @@ void _2NNN(chip8_t *chip8)
 	chip8->sp++;
 
 	chip8->pc = _NNN;
-	
-	if(chip8->debug_flag == 1)
+
+	if(chip8->debug_flag || chip8->global_debug_flag)
 	{
 		printf("[DEBG] - CALL %4X\n", _NNN);
 	}
@@ -299,8 +299,8 @@ void _00EE(chip8_t *chip8)
 {
 	chip8->sp--;
 	chip8->pc = chip8->_stack[chip8->sp];
-	
-	if(chip8->debug_flag == 1)
+
+	if(chip8->debug_flag || chip8->global_debug_flag)
 	{
 		printf("[DEBG] - RET\n");
 	}
@@ -314,9 +314,9 @@ void _3XNN(chip8_t *chip8)
 
 	if(chip8->V[_X] == _NN)
 	{
-		chip8->pc += 4;	
-		
-		if(chip8->debug_flag == 1)
+		chip8->pc += 4;
+
+		if(chip8->debug_flag || chip8->global_debug_flag)
 		{
 			printf("[DEBG] - SE V%X, %02X\n", _X, _NN);
 		}
@@ -324,8 +324,8 @@ void _3XNN(chip8_t *chip8)
 	else
 	{
 		chip8->pc += 2;
-		
-		if(chip8->debug_flag == 1)
+
+		if(chip8->debug_flag || chip8->global_debug_flag)
 		{
 			printf("[DEBG] - SE V%X, %02X\n", _X, _NN);
 		}
@@ -341,8 +341,8 @@ void _5XY0(chip8_t *chip8)
 	if(chip8->V[_X] == chip8->V[_Y])
 	{
 		chip8->pc += 4;
-		
-		if(chip8->debug_flag == 1)
+
+		if(chip8->debug_flag || chip8->global_debug_flag)
 		{
 			printf("[DEBG] - SE V%X, V%X\n", _X, _Y);
 		}
@@ -350,8 +350,8 @@ void _5XY0(chip8_t *chip8)
 	else
 	{
 		chip8->pc += 2;
-		
-		if(chip8->debug_flag == 1)
+
+		if(chip8->debug_flag || chip8->global_debug_flag)
 		{
 			printf("[DEBG] - SE V%X, V%X\n", _X, _Y);
 		}
@@ -362,13 +362,13 @@ void _5XY0(chip8_t *chip8)
 void _4XNN(chip8_t *chip8)
 {
 	unsigned short int _X = (chip8->opcode & 0x0F00) >> 8;
-	unsigned short int _NN = (chip8->opcode & 0x0FF);     
+	unsigned short int _NN = (chip8->opcode & 0x0FF);
 
 	if(chip8->V[_X] != _NN)
 	{
 		chip8->pc += 4;
-		
-		if(chip8->debug_flag == 1)
+
+		if(chip8->debug_flag || chip8->global_debug_flag)
 		{
 			printf("[DEBG] - SNE V%X, %02X\n", _X, _NN);
 		}
@@ -376,8 +376,8 @@ void _4XNN(chip8_t *chip8)
 	else
 	{
 		chip8->pc += 2;
-		
-		if(chip8->debug_flag == 1)
+
+		if(chip8->debug_flag || chip8->global_debug_flag)
 		{
 			printf("[DEBG] - SNE V%X, %02X\n", _X, _NN);
 		}
@@ -393,8 +393,8 @@ void _9XY0(chip8_t *chip8)
 	if(chip8->V[_X] != chip8->V[_Y])
 	{
 		chip8->pc += 4;
-		
-		if(chip8->debug_flag == 1)
+
+		if(chip8->debug_flag || chip8->global_debug_flag)
 		{
 			printf("[DEBG] - SNE V%X, V%X\n", _X, _Y);
 		}
@@ -402,8 +402,8 @@ void _9XY0(chip8_t *chip8)
 	else
 	{
 		chip8->pc += 2;
-	
-		if(chip8->debug_flag == 1)
+
+		if(chip8->debug_flag || chip8->global_debug_flag)
 		{
 			printf("[DEBG] - SNE V%X, V%X\n", _X, _Y);
 		}
@@ -418,8 +418,8 @@ void _FX15(chip8_t *chip8)
 	chip8->delay_timer = chip8->V[_X];
 
 	chip8->pc += 2;
-	
-	if(chip8->debug_flag == 1)
+
+	if(chip8->debug_flag || chip8->global_debug_flag)
 	{
 		printf("[DEBG] - LD DT, V%X\n", _X);
 	}
@@ -433,8 +433,8 @@ void _FX07(chip8_t *chip8)
 	chip8->V[_X] = chip8->delay_timer;
 
 	chip8->pc += 2;
-	
-	if(chip8->debug_flag == 1)
+
+	if(chip8->debug_flag || chip8->global_debug_flag)
 	{
 		printf("[DEBG] - LD V%X, DT\n", _X);
 	}
@@ -449,7 +449,7 @@ void _FX18(chip8_t *chip8)
 
 	chip8->pc += 2;
 
-	if(chip8->debug_flag == 1)
+	if(chip8->debug_flag || chip8->global_debug_flag)
 	{
 		printf("[DEBG] - LD ST, V%X\n", _X);
 	}
@@ -470,7 +470,7 @@ void _FX0A(chip8_t *chip8)
 			chip8->V[_X] = i;
 			chip8->pc += 2;
 
-			if(chip8->debug_flag == 1)
+			if(chip8->debug_flag || chip8->global_debug_flag)
 			{
 				printf("[DEBG] - LD V%X, K\n", _X);
 			}
@@ -487,8 +487,8 @@ void _EX9E(chip8_t *chip8)
 	if(sdl_keys[_sdl_keymap[chip8->V[_X]]])
 	{
 		chip8->pc += 4;
-	
-		if(chip8->debug_flag == 1)
+
+		if(chip8->debug_flag || chip8->global_debug_flag)
 		{
 			printf("[DEBG] - SKP V%X\n", _X);
 		}
@@ -496,8 +496,8 @@ void _EX9E(chip8_t *chip8)
 	else
 	{
 		chip8->pc += 2;
-		
-		if(chip8->debug_flag == 1)
+
+		if(chip8->debug_flag || chip8->global_debug_flag)
 		{
 			printf("[DEBG] - SKP V%X\n", _X);
 		}
@@ -513,8 +513,8 @@ void _EXA1(chip8_t *chip8)
 	if(!sdl_keys[_sdl_keymap[chip8->V[_X]]])
 	{
 		chip8->pc += 4;
-		
-		if(chip8->debug_flag == 1)
+
+		if(chip8->debug_flag || chip8->global_debug_flag)
 		{
 			printf("[DEBG] - SKNP V%X\n", _X);
 		}
@@ -522,8 +522,8 @@ void _EXA1(chip8_t *chip8)
 	else
 	{
 		chip8->pc += 2;
-		
-		if(chip8->debug_flag == 1)
+
+		if(chip8->debug_flag || chip8->global_debug_flag)
 		{
 			printf("[DEBG] - SKNP V%X\n", _X);
 		}
@@ -538,8 +538,8 @@ void _ANNN(chip8_t *chip8)
 	chip8->I = _NNN;
 
 	chip8->pc += 2;
-	
-	if(chip8->debug_flag == 1)
+
+	if(chip8->debug_flag || chip8->global_debug_flag)
 	{
 		printf("[DEBG] - LD I, %4X\n", _NNN);
 	}
@@ -562,8 +562,8 @@ void _FX1E(chip8_t *chip8)
 	chip8->I += chip8->V[_X];
 
 	chip8->pc += 2;
-	
-	if(chip8->debug_flag == 1)
+
+	if(chip8->debug_flag || chip8->global_debug_flag)
 	{
 		printf("[DEBG] - ADD I, V%X\n", _X);
 	}
@@ -576,21 +576,21 @@ void _DXYN(chip8_t *chip8)
 {
 	unsigned int i, j;
 
-	unsigned short int _X = (chip8->opcode & 0x0F00) >> 8; 
-	unsigned short int _Y = (chip8->opcode & 0x00F0) >> 4; 
+	unsigned short int _X = (chip8->opcode & 0x0F00) >> 8;
+	unsigned short int _Y = (chip8->opcode & 0x00F0) >> 4;
 	unsigned short int _N = (chip8->opcode & 0x000F);
 
 	chip8->V[0xF] &= 0;
 
-	for(i = 0; i < _N; i++) 
+	for(i = 0; i < _N; i++)
 	{
 		unsigned char pixel = chip8->memory[chip8->I + i];
 
-		for(j = 0; j < 8; j++) 
+		for(j = 0; j < 8; j++)
 		{
-			if(pixel & (0x80 >> j)) 
+			if(pixel & (0x80 >> j))
 			{
-				if(chip8->graphics[j + chip8->V[_X] + (i + chip8->V[_Y]) * 64]) 
+				if(chip8->graphics[j + chip8->V[_X] + (i + chip8->V[_Y]) * 64])
 				{
 					chip8->V[0xF] = 1;
 				}
@@ -603,8 +603,8 @@ void _DXYN(chip8_t *chip8)
 	chip8->draw_flag = 1;
 
 	chip8->pc += 2;
-	
-	if(chip8->debug_flag == 1)
+
+	if(chip8->debug_flag || chip8->global_debug_flag)
 	{
 		printf("[DEBG] - DRW V%X, V%X, %02X\n", _X, _Y, _N);
 	}
@@ -616,8 +616,8 @@ void _00E0(chip8_t *chip8)
 	memset(chip8->graphics, 0, sizeof(chip8->graphics));
 
 	chip8->pc += 2;
-	
-	if(chip8->debug_flag == 1)
+
+	if(chip8->debug_flag || chip8->global_debug_flag)
 	{
 		printf("[DEBG] - CLS\n");
 	}
@@ -631,8 +631,8 @@ void _FX29(chip8_t *chip8)
 	chip8->I = chip8->V[_X] * 5;
 
 	chip8->pc += 2;
-	
-	if(chip8->debug_flag == 1)
+
+	if(chip8->debug_flag || chip8->global_debug_flag)
 	{
 		printf("[DEBG] - LD F, V%X\n", _X);
 	}
@@ -648,8 +648,8 @@ void _FX33(chip8_t *chip8)
 	chip8->memory[chip8->I + 2] = chip8->V[_X] % 10;
 
 	chip8->pc += 2;
-	
-	if(chip8->debug_flag == 1)
+
+	if(chip8->debug_flag || chip8->global_debug_flag)
 	{
 		printf("[DEBG] - LD B, V%X\n", _X);
 	}
@@ -670,8 +670,8 @@ void _FX55(chip8_t *chip8)
 	chip8->I += _X + 1;
 
 	chip8->pc += 2;
-	
-	if(chip8->debug_flag == 1)
+
+	if(chip8->debug_flag || chip8->global_debug_flag)
 	{
 		printf("[DEBG] - LD [I], V%X\n", _X);
 	}
@@ -685,13 +685,13 @@ void _FX65(chip8_t *chip8)
 	unsigned short int _X = (chip8->opcode & 0x0F00) >> 8;
 
 	for(i = 0; i <= _X; i++)
-	{	
+	{
 		chip8->V[i] = chip8->memory[chip8->I + i];
 	}
 
 	chip8->pc += 2;
-	
-	if(chip8->debug_flag == 1)
+
+	if(chip8->debug_flag || chip8->global_debug_flag)
 	{
 		printf("[DEBG] - LD V%X, [I]\n", _X);
 	}
