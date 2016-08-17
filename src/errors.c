@@ -12,7 +12,7 @@ void print_exit_error(unsigned int error_code, char *error_string)
 			printf("[ERROR 2] - Can't open file.\n");
 			exit(OPEN_ERROR);
 		case 3:
-			printf("[ERROR 3] - File is too large.\n");
+			printf("[ERROR 3] - File size is invalid.\n");
 			exit(SIZE_ERROR);
 		// args
 		case 4:
