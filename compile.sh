@@ -1,4 +1,5 @@
 mkdir build
 cd build
 cmake ../
-make -j 9
+scan-build make -j 9
+#make -j 9
