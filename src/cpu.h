@@ -50,7 +50,7 @@ typedef struct
 
 } chip8_t;
 
-int cpu_timer_reset(chip8_t *chiip8);
+int cpu_timer_reset(chip8_t *chip8);
 int cpu_init_reset(chip8_t *chip8);
 int cpu_cycle(chip8_t *chip8);
 

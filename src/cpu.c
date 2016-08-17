@@ -5,7 +5,7 @@
 #include "cpu.h"
 #include "opcodes.h"
 
-unsigned char font[FNT_SIZE] = 
+unsigned char font[FNT_SIZE] =
 {
 	0xF0, 0x90, 0x90, 0x90, 0xF0, // 0
 	0x20, 0x60, 0x20, 0x20, 0x70, // 1
@@ -80,11 +80,11 @@ int cpu_init_reset(chip8_t *chip8)
 
 int cpu_cycle(chip8_t *chip8)
 {
-	chip8->opcode = (chip8->memory[chip8->pc] << 8 | 
+	chip8->opcode = (chip8->memory[chip8->pc] << 8 |
 			chip8->memory[chip8->pc + 1]);
 
 	cpu_timer_reset(chip8);
-	
+
 	switch(chip8->opcode & 0xF000)
 	{
 		case 0x0000:

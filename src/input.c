@@ -49,9 +49,9 @@ int input_wait()
 int input_new_event(chip8_t *chip8)
 {
 	SDL_Event event;
-	
+
 	const Uint8 *sdl_key = SDL_GetKeyState(NULL);
-	
+
 	unsigned int i;
 
 	while(SDL_PollEvent(&event))
@@ -99,13 +99,13 @@ int input_new_event(chip8_t *chip8)
 	}
 	else if(sdl_key[SDLK_h])
 	{
-		memory_print_emu_info(chip8);	
+		memory_print_emu_info(chip8);
 	}
 	else if(sdl_key[SDLK_ESCAPE])
 	{
 		printf("[INFO] - Exiting...\n");
 		graphics_quit();
-		exit(EXIT_SUCCESS);	
+		exit(EXIT_SUCCESS);
 	}
 
 	return 0;

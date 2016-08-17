@@ -29,7 +29,7 @@ int main(int argc, char *argv[])
 
 	// chip8 inits
 	cpu_init_reset(&_chip8);
-	rom_load(&_chip8, argv[1]);	
+	rom_load(&_chip8, argv[1]);
 
 	graphics_init(&screen, argv[1]);
 
